@@ -15,9 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from authority_backend.ownership import handle as ownershiphandle
+from authority_backend.shoppingcart import handle as ownershiphandle
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('ownership', ownershiphandle)
+    path('shoppingcart', ownershiphandle)
 ]
