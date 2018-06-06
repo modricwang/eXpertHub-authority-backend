@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from authority_backend import models
 import json
-
+from definitions import *
 from django.http.request import QueryDict
 
 
@@ -19,20 +19,20 @@ def request_body_serialze(request):
 def handle(request):
     if request.method == 'POST':
         if 'uid' in request.POST and 'rid' in request.POST:
-            uid = int(request.POST['uid'])
-            rid = int(request.POST['rid'])
+            uid = str(request.POST['uid'])
+            rid = str(request.POST['rid'])
             models.shoppingcart.objects.create(uid=uid, rid=rid)
-            s = 'ok'
+            s = RESPONSE_OK
         else:
-            s = 'mmp'
+            s = RESPONSE_ERR
     elif request.method == 'GET':
         errcode = 0
         l = None
         if 'uid' in request.GET:
-            uid = int(request.GET['uid'])
+            uid = str(request.GET['uid'])
             l = models.shoppingcart.objects.filter(uid=uid)
         elif 'rid' in request.GET:
-            rid = int(request.GET['rid'])
+            rid = str(request.GET['rid'])
             l = models.shoppingcart.objects.filter(rid=rid)
         else:
             l = models.shoppingcart.objects.all()
@@ -45,10 +45,10 @@ def handle(request):
         body_dict = request_body_serialze(request)
         # print(request.body)
         # print(body_dict)
-        uid = int(body_dict['uid'])
-        rid = int(body_dict['rid'])
+        uid = str(body_dict['uid'])
+        rid = str(body_dict['rid'])
         models.shoppingcart.objects.filter(uid=uid, rid=rid).delete()
-        s = 'ok'
+        s = RESPONSE_OK
     else:
-        s = 'unknown operation'
+        s = RESPONSE_ERR
     return HttpResponse(s)
