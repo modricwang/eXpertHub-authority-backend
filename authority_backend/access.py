@@ -26,6 +26,8 @@ def handle(request):
         else:
             errcode = RESPONSE_ERR
         s = {"errcode": errcode}
+        s = json.dumps(s)
+
     elif request.method == 'GET':
         errcode = 0
         l = None
@@ -49,7 +51,9 @@ def handle(request):
         models.access.objects.filter(uid=uid, rid=rid).delete()
         errcode = RESPONSE_OK
         s = {"errcode": errcode}
+        s = json.dumps(s)
     else:
         errcode = RESPONSE_ERR
         s = {"errcode": errcode}
+        s = json.dumps(s)
     return HttpResponse(s)

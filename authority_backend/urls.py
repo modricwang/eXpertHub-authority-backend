@@ -15,11 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from authority_backend.shoppingcart import handle as ownershiphandle
-from authority_backend.access import handle as accesshandle
+from authority_backend.shoppingcart import handle as ownership_handle
+from authority_backend.access import handle as access_handle
+from authority_backend.storage import handle as storage_handle
+# from django.conf import settings
+# from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('shoppingcart', ownershiphandle),
-    path('access', accesshandle)
-]
+                  path('admin/', admin.site.urls),
+                  path('shoppingcart', ownership_handle),
+                  path('access', access_handle),
+                  path('storage', storage_handle)
+              ]
+
+urlpatterns += staticfiles_urlpatterns()

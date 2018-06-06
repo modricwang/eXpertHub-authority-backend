@@ -104,3 +104,4 @@ venv.bak/
 .mypy_cache/
 
 \.idea/
+authority_backend/static/tf.png
