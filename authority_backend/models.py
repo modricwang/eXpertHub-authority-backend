@@ -9,3 +9,8 @@ class shoppingcart(models.Model):
 class access(models.Model):
     uid = models.IntegerField()
     rid = models.IntegerField()
+
+
+class storage(models.Model):
+    file = models.FileField()
+    fid = models.IntegerField()
