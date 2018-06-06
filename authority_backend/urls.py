@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from authority_backend.shoppingcart import handle as ownershiphandle
+from authority_backend.access import handle as accesshandle
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('shoppingcart', ownershiphandle)
+    path('shoppingcart', ownershiphandle),
+    path('access', accesshandle)
 ]

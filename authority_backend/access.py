@@ -21,7 +21,7 @@ def handle(request):
         if 'uid' in request.POST and 'rid' in request.POST:
             uid = int(request.POST['uid'])
             rid = int(request.POST['rid'])
-            models.shoppingcart.objects.create(uid=uid, rid=rid)
+            models.access.objects.create(uid=uid, rid=rid)
             s = 'ok'
         else:
             s = 'mmp'
@@ -30,12 +30,12 @@ def handle(request):
         l = None
         if 'uid' in request.GET:
             uid = int(request.GET['uid'])
-            l = models.shoppingcart.objects.filter(uid=uid)
+            l = models.access.objects.filter(uid=uid)
         elif 'rid' in request.GET:
             rid = int(request.GET['rid'])
-            l = models.shoppingcart.objects.filter(rid=rid)
+            l = models.access.objects.filter(rid=rid)
         else:
-            l = models.shoppingcart.objects.all()
+            l = models.access.objects.all()
         s = {"errcode": errcode, "list": []}
         if l is not None:
             for item in l:
@@ -47,7 +47,7 @@ def handle(request):
         # print(body_dict)
         uid = int(body_dict['uid'])
         rid = int(body_dict['rid'])
-        models.shoppingcart.objects.filter(uid=uid, rid=rid).delete()
+        models.access.objects.filter(uid=uid, rid=rid).delete()
         s = 'ok'
     else:
         s = 'unknown operation'
