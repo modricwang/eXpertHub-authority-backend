@@ -10,3 +10,12 @@ python manage.py runserver 0.0.0.0:12307
 python manage.py makemigrations authority_backend
 python manage.py migrate
 ```
+
+## Preparation
+```bash
+conda install django mysqlclient
+```
+
+```sql
+create database auth_backend;
+```
